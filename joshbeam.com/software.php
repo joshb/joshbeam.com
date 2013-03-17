@@ -33,6 +33,11 @@
 		</li>
 
 		<li>
+			<strong><a href="jsrasterizer/">jsrasterizer</a></strong>
+			<p>A simple triangle rasterizer implemented with HTML, CSS, and JavaScript.</p>
+		</li>
+
+		<li>
 			<strong><a href="/articles/getting_started_with_glsl/glsl_lighting-1.tar.gz">glsl_lighting-1.tar.gz</a> (source tarball; December 30, 2010)</strong>
 			<p>An OpenGL application written in C that demonstrates lighting implemented with GLSL shaders. This demo was written for the <a href="/articles/getting_started_with_glsl/">Getting Started with the OpenGL Shading Language</a> article.</p>
 		</li>

@@ -1,0 +1,3 @@
+[submodule "jsrasterizer"]
+	path = jsrasterizer
+	url = https://github.com/joshb/jsrasterizer.git
