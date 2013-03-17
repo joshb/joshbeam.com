@@ -9,7 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
 <meta name="viewport" content="initial-scale = 1.0" />
 <title><?php
 	if(strlen($title) > 0)
@@ -52,7 +52,7 @@
 </div>
 
 <div id="footer">
-	Copyright &copy; 2002-2012 Josh Beam
+	Copyright &copy; 2002-2013 Josh Beam
 </div>
 
 </body>
