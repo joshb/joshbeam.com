@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale = 1.0" />
+  <title><%= yield :title %> - joshbeam.com</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<h1><%= link_to "joshbeam.com", :controller => "pages", :action => "home" %></h1>
+
+<div id="menu">
+  <%= link_to "home", :controller => "pages", :action => "home" %>
+  <%= link_to "articles", :controller => "articles" %>
+  <%= link_to "software", :controller => "software" %>
+  <%= mail_to "josh@joshbeam.com", "email" %>
+  <a href="https://github.com/joshb">github</a>
+</div>
+
+<div id="content">
+  <h2><%= yield :title %></h2>
+
+  <%= yield %>
+</div>
+
+<div id="footer">
+  Copyright &copy; 2002-2013 Josh Beam
+</div>
+
+</body>
+</html>
