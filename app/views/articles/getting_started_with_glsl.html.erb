@@ -19,7 +19,7 @@
 
   <p>A shader object represents a single shader of a certain type (for example, a vertex shader or a fragment shader). Typically, you will create a shader object, pass it the shader source code as a string, and then compile it. The demo accompanying this article contains a C source file called shader.c that contains a function to easily compile a GLSL shader contained in a file:</p>
 
-  <pre>
+  <pre class="prettyprint">
 /*
  * Returns a shader object containing a shader
  * compiled from the given GLSL shader file.
@@ -69,7 +69,7 @@ shaderCompileFromFile(GLenum type, const char *filePath)
 
   <p>Once a shader has been compiled, it should then be attached to a program object. A program object can be created with the <strong>glCreateProgram</strong> function. The shader.c file of the demo contains a function to easily compile a shader and attach it to a program object:</p>
 
-  <pre>
+  <pre class="prettyprint">
 /*
  * Compiles and attaches a shader of the
  * given type to the given program object.
@@ -95,7 +95,7 @@ shaderAttachFromFile(GLuint program, GLenum type, const char *filePath)
 
   <p>Once shaders have been attached to the program object, the program object can be linked using the <strong>glLinkProgram</strong> function. The <strong>sceneInit</strong> function in the demo contains the following code for creating a program object, attaching shaders, and linking the program:</p>
 
-  <pre>
+  <pre class="prettyprint">
 void
 sceneInit(void)
 {
@@ -130,7 +130,7 @@ sceneInit(void)
 
   <p>After the program has been linked, the <strong>glGetUniformLocation</strong> function is used to retrieve the locations of some uniform variables that are defined in the shaders:</p>
 
-  <pre>
+  <pre class="prettyprint">
   /* get uniform locations */
   g_programCameraPositionLocation = glGetUniformLocation(g_program, "cameraPosition");
   g_programLightPositionLocation = glGetUniformLocation(g_program, "lightPosition");
@@ -151,7 +151,7 @@ sceneInit(void)
 
   <p>Now that we know how to compile shaders and link them using program objects, let's take a look at some shaders, beginning with <strong>shader.vp</strong>, the vertex shader that is included with the demo accompanying this article. GLSL has a C-like syntax that you should find familiar. The vertex shader begins with the following lines:</p>
 
-  <pre>
+  <pre class="prettyprint">
 const int NUM_LIGHTS = 3;
 
 uniform vec3 cameraPosition;
@@ -170,7 +170,7 @@ varying vec3 lightVector[NUM_LIGHTS];
 
   <p>The <strong>main</strong> function of the shader, which contains the actual shader code that is executed for each vertex, is shown below:</p>
 
-  <pre>
+  <pre class="prettyprint">
 void
 main()
 {
@@ -198,7 +198,7 @@ main()
 
   <p>Let's now move on to <strong>shader.fp</strong>, the fragment shader included with the demo. This shader's job is to calculate diffuse and specular lighting values for each fragment (or pixel) that is drawn while the program object is enabled. This shader begins by defining several constants:</p>
 
-  <pre>
+  <pre class="prettyprint">
 const int NUM_LIGHTS = 3;
 const vec3 AMBIENT = vec3(0.1, 0.1, 0.1);
 const float MAX_DIST = 2.5;
@@ -209,7 +209,7 @@ const float MAX_DIST_SQUARED = MAX_DIST * MAX_DIST;
 
   <p>Next, we have a uniform and some varyings:</p>
 
-  <pre>
+  <pre class="prettyprint">
 uniform vec3 lightColor[NUM_LIGHTS];
 
 varying vec3 fragmentNormal;
@@ -221,7 +221,7 @@ varying vec3 lightVector[NUM_LIGHTS];
 
   <p>The <strong>main</strong> function, which is executed for each fragment drawn, begins with the following lines of code:</p>
 
-  <pre>
+  <pre class="prettyprint">
 void
 main()
 {
@@ -238,7 +238,7 @@ main()
 
   <p>We then start calculating the lighting contribution from each light:</p>
 
-  <pre>
+  <pre class="prettyprint">
   // loop through each light
   for(int i = 0; i < NUM_LIGHTS; ++i) {
     // calculate distance between 0.0 and 1.0
@@ -250,7 +250,7 @@ main()
 
   <p>Next, we calculate the diffuse lighting contribution from the current light:</p>
 
-  <pre>
+  <pre class="prettyprint">
     // diffuse
     vec3 lightDir = normalize(lightVector[i]);
     float diffuseDot = dot(normal, lightDir);
@@ -261,7 +261,7 @@ main()
 
   <p>We then calculate the specular lighting contribution from the current light, which will give objects drawn a shiny appearance:</p>
 
-  <pre>
+  <pre class="prettyprint">
     // specular
     vec3 halfAngle = normalize(cameraDir + lightDir);
     vec3 specularColor = min(lightColor[i] + 0.5, 1.0);
@@ -282,7 +282,7 @@ main()
 
   <p>Finally, we output the final fragment color:</p>
 
-  <pre>
+  <pre class="prettyprint">
   vec4 sample = vec4(1.0, 1.0, 1.0, 1.0);
   gl_FragColor = vec4(clamp(sample.rgb * (diffuse + AMBIENT) + specular, 0.0, 1.0), sample.a);
 }
@@ -294,7 +294,7 @@ main()
 
   <p>Now that we have vertex/fragment shaders and know how to compile/link them, we can use them when rendering objects. Rendering is done by the <strong>sceneRender</strong> function in the demo:</p>
 
-  <pre>
+  <pre class="prettyprint">
 void
 sceneRender(void)
 {
@@ -321,7 +321,7 @@ sceneRender(void)
 
   <p>Finally, we just render some spheres to represent the lights, call <strong>glutSwapBuffers</strong>, and we're done:</p>
 
-  <pre>
+  <pre class="prettyprint">
   /* render each light */
   for(i = 0; i < NUM_LIGHTS; ++i) {
     /* render sphere with the light's color/position */
